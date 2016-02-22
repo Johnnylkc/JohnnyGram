@@ -1,0 +1,6 @@
+framework module Pods_JohnnyGram {
+  umbrella header "Pods-JohnnyGram-umbrella.h"
+
+  export *
+  module * { export * }
+}
