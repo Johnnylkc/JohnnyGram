@@ -10,13 +10,31 @@ import UIKit
 
 class SignInVC: UIViewController {
 
-    override func viewDidLoad() {
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
+    
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
+  
+    @IBAction func signUp(sender: AnyObject)
+    {
+        print("123123")
+    }
+    
+    
+    
+    
+    
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
