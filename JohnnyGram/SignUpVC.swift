@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpVC: UIViewController {
+class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
     
     @IBOutlet weak var avaImage: UIImageView!
     
@@ -18,6 +18,7 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var bioTextField: UITextField!
     @IBOutlet weak var webTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
 
     
     @IBOutlet weak var signUpButton: UIButton!
@@ -44,14 +45,40 @@ class SignUpVC: UIViewController {
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideKeyboard:", name: UIKeyboardWillHideNotification, object: nil)
         
+        
+        avaImage.layer.cornerRadius = avaImage.frame.size.width/2
+        avaImage.clipsToBounds = true
+        
+        
+        ////加在scrollView 碰一下可以收鍵盤
         let hideTap = UITapGestureRecognizer(target: self, action: "hideKeyboardTap:")
         hideTap.numberOfTapsRequired = 1
         self.view.userInteractionEnabled = true
         self.view.addGestureRecognizer(hideTap)
         
-
+        let avaTap = UITapGestureRecognizer(target: self, action: "loadImage:")
+        avaTap.numberOfTapsRequired = 1
+        self.avaImage.userInteractionEnabled = true
+        avaImage.addGestureRecognizer(avaTap)
+        
     }
 
+    func loadImage(recoginizer:UITapGestureRecognizer)
+    {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .PhotoLibrary
+        picker.allowsEditing = true
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
+    {
+        avaImage.image = info[UIImagePickerControllerEditedImage] as? UIImage
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     
     func hideKeyboardTap(recoginizer:UITapGestureRecognizer)
@@ -62,7 +89,7 @@ class SignUpVC: UIViewController {
     
     
     
-    
+    ////執行兩個在viewDidLoad的 notification
     func showKeyboard(notification:NSNotification)
     {
         
@@ -85,6 +112,23 @@ class SignUpVC: UIViewController {
     @IBAction func signUp(sender: AnyObject)
     {
         print("我要登入")
+        if(userNameTextField.text!.isEmpty || passwordTextField.text!.isEmpty || repeatPassordTextField.text!.isEmpty || fullNameTextField.text!.isEmpty || bioTextField.text!.isEmpty || webTextField.text!.isEmpty || emailTextField.text!.isEmpty)
+        {
+            let alert = UIAlertController(title: "拜託", message: "請把資料填完", preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "我知道了", style: .Cancel, handler: nil)
+            alert.addAction(ok)
+            self.presentViewController(alert, animated: true, completion: nil)
+            }
+        
+        if(passwordTextField.text != repeatPassordTextField.text)
+        {
+            let alert = UIAlertController(title: "抱歉", message: "請再確認一次你的密碼", preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "我知道了", style: .Cancel, handler: nil)
+            alert.addAction(ok)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        
+        
     }
     
     
