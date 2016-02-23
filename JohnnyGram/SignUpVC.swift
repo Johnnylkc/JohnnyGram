@@ -35,19 +35,63 @@ class SignUpVC: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        scrollView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        scrollView.contentSize.height = self.view.frame.height
+        scrollViewHeight = scrollView.frame.size.height
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showKeyboard:", name: UIKeyboardWillShowNotification, object: nil)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideKeyboard:", name: UIKeyboardWillHideNotification, object: nil)
+        
+        let hideTap = UITapGestureRecognizer(target: self, action: "hideKeyboardTap:")
+        hideTap.numberOfTapsRequired = 1
+        self.view.userInteractionEnabled = true
+        self.view.addGestureRecognizer(hideTap)
+        
 
     }
 
     
-    @IBAction func signUp(sender: AnyObject)
+    
+    func hideKeyboardTap(recoginizer:UITapGestureRecognizer)
+    {
+        self.view.endEditing(true)
+        
+    }
+    
+    
+    
+    
+    func showKeyboard(notification:NSNotification)
     {
         
+        keyBoard = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey]!.CGRectValue)!
+        UIView.animateWithDuration(0.4) { () -> Void in
+            self.scrollView.frame.size.height = self.scrollViewHeight - self.keyBoard.height
+        }
+    }
+    
+    func hideKeyboard(notification:NSNotification)
+    {
+        UIView.animateWithDuration(0.4) { () -> Void in
+            self.scrollView.frame.size.height = self.view.frame.height
+        }
+    }
+
+    
+    
+    
+    @IBAction func signUp(sender: AnyObject)
+    {
+        print("我要登入")
     }
     
     
     @IBAction func cancel(sender: AnyObject)
     {
-        
+        print("我要取消")
+        self.dismissViewControllerAnimated(true, completion:nil)
     }
     
     
