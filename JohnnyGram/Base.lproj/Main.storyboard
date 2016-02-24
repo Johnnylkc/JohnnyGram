@@ -23,6 +23,9 @@
                                 <rect key="frame" x="20" y="221" width="126" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="forget password"/>
+                                <connections>
+                                    <segue destination="Be1-Y2-gNg" kind="modal" id="yh0-Ib-v8V"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RfR-lv-oQX">
                                 <rect key="frame" x="25" y="359" width="94" height="30"/>
@@ -32,7 +35,7 @@
                                     <color key="titleColor" red="0.98822115379999997" green="0.98822115379999997" blue="0.98822115379999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="i6m-0w-1lp"/>
+                                    <action selector="signIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vqp-Tz-q91"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OCl-kb-fod">
@@ -43,6 +46,7 @@
                                     <color key="titleColor" red="0.98822115379999997" green="0.98822115379999997" blue="0.98822115379999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dwV-HP-w9C"/>
                                     <segue destination="za0-uO-Fb6" kind="modal" id="KwP-SY-IFc"/>
                                 </connections>
                             </button>
@@ -57,7 +61,8 @@
                     </view>
                     <connections>
                         <outlet property="passwordTextField" destination="goz-L7-LKU" id="fZP-QM-WlL"/>
-                        <outlet property="signUpButton" destination="OCl-kb-fod" id="wWf-2X-gsE"/>
+                        <outlet property="signInButton" destination="RfR-lv-oQX" id="9bv-lH-M4R"/>
+                        <outlet property="signUpButton" destination="OCl-kb-fod" id="n9I-7R-IyW"/>
                         <outlet property="userNameTextField" destination="ghA-o8-eDG" id="r0q-Rh-IZD"/>
                     </connections>
                 </viewController>
@@ -167,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOT-g5-rJD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="300" y="265"/>
+            <point key="canvasLocation" x="333" y="265"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="8ey-9v-cjP">
@@ -182,7 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Sh-jF-l8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1401" y="262"/>
+            <point key="canvasLocation" x="1095" y="265"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2UU-s6-0hk">
@@ -199,7 +204,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJn-fp-YMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="993" y="262"/>
+            <point key="canvasLocation" x="709" y="265"/>
         </scene>
         <!--Reset PasswordVC-->
         <scene sceneID="TSy-cV-LtO">
@@ -208,12 +213,41 @@
                     <view key="view" contentMode="scaleToFill" id="F44-Ox-gzD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" id="iy7-Kg-jfL">
+                                <rect key="frame" x="20" y="73" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oBh-pQ-hD6">
+                                <rect key="frame" x="20" y="133" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.98996394229999995" green="0.1252846041" blue="0.33980609290000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Reset">
+                                    <color key="titleColor" red="0.98996394229999995" green="0.98996394229999995" blue="0.98996394229999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kiW-tr-oSh">
+                                <rect key="frame" x="229" y="133" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.98996394229999995" green="0.98996394229999995" blue="0.98996394229999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="kiW-tr-oSh" id="yUU-O8-Aav"/>
+                        <outlet property="emailTextField" destination="iy7-Kg-jfL" id="OJh-mx-ocp"/>
+                        <outlet property="resetButton" destination="oBh-pQ-hD6" id="FyC-DJ-FSV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJl-4y-3pE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="637" y="265"/>
+            <point key="canvasLocation" x="-102" y="-362"/>
         </scene>
     </scenes>
     <resources>
