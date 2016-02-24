@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class ResetPasswordVC: UIViewController {
 
@@ -26,7 +27,47 @@ class ResetPasswordVC: UIViewController {
 
     
     
+    @IBAction func reset(sender: AnyObject)
+    {
+        print("重設密碼")
+        self.view.endEditing(true)
+        
+        if emailTextField.text!.isEmpty
+        {
+            let alert = UIAlertController(title: "hello", message: "email要填喔", preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "我知道了", style: .Cancel, handler: nil)
+            alert.addAction(ok)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        
+        
+        PFUser.requestPasswordResetForEmailInBackground(emailTextField.text!) { (success:Bool, error:NSError?) -> Void in
+            
+            if success
+            {
+                let alert = UIAlertController(title: "親愛的用戶你好", message: "我們已經把新的密碼寄到你剛輸入的信箱了", preferredStyle: .Alert)
+                let ok = UIAlertAction(title: "ok", style: .Default, handler: { (UIAlertAction) -> Void in
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
+                alert.addAction(ok)
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+            }
+            else
+            {
+                print(error)
+            }
+            
+        }
+        
+    }
     
+    
+    @IBAction func cancel(sender: AnyObject)
+    {
+        print("取消取消拉")
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     
     

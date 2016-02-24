@@ -227,6 +227,9 @@
                                 <state key="normal" title="Reset">
                                     <color key="titleColor" red="0.98996394229999995" green="0.98996394229999995" blue="0.98996394229999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="reset:" destination="Be1-Y2-gNg" eventType="touchUpInside" id="U86-4d-XHH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kiW-tr-oSh">
                                 <rect key="frame" x="229" y="133" width="71" height="30"/>
@@ -235,6 +238,9 @@
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="0.98996394229999995" green="0.98996394229999995" blue="0.98996394229999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="cancel:" destination="Be1-Y2-gNg" eventType="touchUpInside" id="FEs-pH-K4B"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
