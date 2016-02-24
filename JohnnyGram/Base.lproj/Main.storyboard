@@ -169,6 +169,38 @@
             </objects>
             <point key="canvasLocation" x="300" y="265"/>
         </scene>
+        <!--Item 2-->
+        <scene sceneID="8ey-9v-cjP">
+            <objects>
+                <viewController id="Tqs-Bu-idn" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Nx-yQ-G6z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="wbF-6C-HSu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Sh-jF-l8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1401" y="262"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="2UU-s6-0hk">
+            <objects>
+                <tabBarController storyboardIdentifier="tabBar" id="2xX-Z3-SCi" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Frz-XE-VuP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Tqs-Bu-idn" kind="relationship" relationship="viewControllers" id="Ths-TH-J3k"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nJn-fp-YMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="993" y="262"/>
+        </scene>
         <!--Reset PasswordVC-->
         <scene sceneID="TSy-cV-LtO">
             <objects>

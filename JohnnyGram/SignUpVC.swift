@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
     
@@ -63,6 +64,8 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
         
     }
 
+    
+    
     func loadImage(recoginizer:UITapGestureRecognizer)
     {
         let picker = UIImagePickerController()
@@ -111,7 +114,7 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
     
     @IBAction func signUp(sender: AnyObject)
     {
-        print("我要登入")
+        ////如果有一個textfield沒填寫 就跳出個alert
         if(userNameTextField.text!.isEmpty || passwordTextField.text!.isEmpty || repeatPassordTextField.text!.isEmpty || fullNameTextField.text!.isEmpty || bioTextField.text!.isEmpty || webTextField.text!.isEmpty || emailTextField.text!.isEmpty)
         {
             let alert = UIAlertController(title: "拜託", message: "請把資料填完", preferredStyle: .Alert)
@@ -120,6 +123,7 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
             self.presentViewController(alert, animated: true, completion: nil)
             }
         
+        ////如果密碼和密碼確認不一樣 跳出alert
         if(passwordTextField.text != repeatPassordTextField.text)
         {
             let alert = UIAlertController(title: "抱歉", message: "請再確認一次你的密碼", preferredStyle: .Alert)
@@ -128,6 +132,42 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
             self.presentViewController(alert, animated: true, completion: nil)
         }
         
+        let user = PFUser()
+        user.username = userNameTextField.text?.lowercaseString
+        user.email = emailTextField.text?.lowercaseString
+        user.password = passwordTextField.text
+        user["fullName"] = fullNameTextField.text?.lowercaseString
+        user["bio"] = bioTextField.text
+        user["web"] = webTextField.text?.lowercaseString
+        
+        ////這兩個還沒要用 先創建
+        user["phoneNimber"] = ""
+        user["grnder"] = ""
+        
+        let avaData = UIImageJPEGRepresentation(avaImage.image!, 0.4)
+        let avafile = PFFile(name: "ava.jpg", data: avaData!)
+        user["ava"] = avafile
+        
+        user.signUpInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
+            
+            if success
+            {
+                NSUserDefaults.standardUserDefaults().setObject(user.username, forKey: "userName")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                
+                let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.login()
+                
+                
+                print("註冊成功")
+                print("寫入userDefaults")
+            }
+            else
+            {
+                print(error)
+                print("有些錯誤")
+            }
+        }
         
     }
     

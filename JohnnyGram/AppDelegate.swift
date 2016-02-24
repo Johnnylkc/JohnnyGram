@@ -20,17 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
 
-        Parse.enableLocalDatastore()
+     //  Parse.enableLocalDatastore()
         
         // Initialize Parse.
         Parse.setApplicationId("IZ9cGa1OMuc5JX0tptFeF2PTJfg4Fn1qnnOy2pFp",
             clientKey: "0k7yQCQsqABtqjQHgdJilmVTn2ZsuAdExIjRCp0O")
         
         // [Optional] Track statistics around application opens.
-        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+       // PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
-        
-        
+                
         
         return true
     }
@@ -57,6 +56,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func login()
+    {
+        let username : String? = NSUserDefaults.standardUserDefaults().stringForKey("userName")
+        if username != nil
+        {
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let myTabBar = storyBoard.instantiateViewControllerWithIdentifier("tabBar") as! UITabBarController
+            window?.rootViewController = myTabBar
+            
+        }
+        
+    }
+    
+    
+    
 }
 
