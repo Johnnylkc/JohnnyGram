@@ -11,9 +11,14 @@ import Parse
 
 class SignInVC: UIViewController {
 
+    
+    @IBOutlet weak var johnnyGramLabel: UILabel!
+    
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    
+    @IBOutlet weak var forgetButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
@@ -21,7 +26,17 @@ class SignInVC: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
+        johnnyGramLabel.frame = CGRectMake(10, 80, self.view.frame.size.width-20, 50)
+        userNameTextField.frame = CGRectMake(10, johnnyGramLabel.frame.origin.y+70, self.view.frame.size.width-20, 30)
+        passwordTextField.frame = CGRectMake(10, userNameTextField.frame.origin.y+40, self.view.frame.size.width-20, 30)
+        forgetButton.frame = CGRectMake(10, passwordTextField.frame.origin.y+30, self.view.frame.size.width-20, 30)
+        signInButton.frame = CGRectMake(20, forgetButton.frame.origin.y+40, self.view.frame.size.width/4, 30)
+        signUpButton.frame = CGRectMake(self.view.frame.size.width - self.view.frame.size.width/4 - 20, signInButton.frame.origin.y, self.view.frame.size.width/4, 30)
+        
+        
+        
+        
     }
 
     

@@ -12,6 +12,7 @@ import Parse
 class ResetPasswordVC: UIViewController {
 
     
+    
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var resetButton: UIButton!
