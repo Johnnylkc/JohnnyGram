@@ -27,12 +27,7 @@ class SignInVC: UIViewController {
     {
         super.viewDidLoad()
         
-        johnnyGramLabel.frame = CGRectMake(10, 80, self.view.frame.size.width-20, 50)
-        userNameTextField.frame = CGRectMake(10, johnnyGramLabel.frame.origin.y+70, self.view.frame.size.width-20, 30)
-        passwordTextField.frame = CGRectMake(10, userNameTextField.frame.origin.y+40, self.view.frame.size.width-20, 30)
-        forgetButton.frame = CGRectMake(10, passwordTextField.frame.origin.y+30, self.view.frame.size.width-20, 30)
-        signInButton.frame = CGRectMake(20, forgetButton.frame.origin.y+40, self.view.frame.size.width/4, 30)
-        signUpButton.frame = CGRectMake(self.view.frame.size.width - self.view.frame.size.width/4 - 20, signInButton.frame.origin.y, self.view.frame.size.width/4, 30)
+        allUI()
         
         
         
@@ -40,6 +35,30 @@ class SignInVC: UIViewController {
     }
 
     
+    func allUI()
+    {
+        ////所有UI frame
+        johnnyGramLabel.frame = CGRectMake(10, 80, self.view.frame.size.width-20, 50)
+        userNameTextField.frame = CGRectMake(10, johnnyGramLabel.frame.origin.y+70, self.view.frame.size.width-20, 30)
+        passwordTextField.frame = CGRectMake(10, userNameTextField.frame.origin.y+40, self.view.frame.size.width-20, 30)
+        forgetButton.frame = CGRectMake(10, passwordTextField.frame.origin.y+30, self.view.frame.size.width-20, 30)
+        signInButton.frame = CGRectMake(20, forgetButton.frame.origin.y+40, self.view.frame.size.width/4, 30)
+        signUpButton.frame = CGRectMake(self.view.frame.size.width - self.view.frame.size.width/4 - 20, signInButton.frame.origin.y, self.view.frame.size.width/4, 30)
+        
+        ////加在整個view上的gest 碰了可以收鍵盤
+        let tap = UITapGestureRecognizer(target: self, action: "hideKeyboard:")
+        tap.numberOfTapsRequired = 1
+        self.view.userInteractionEnabled = true
+        self.view.addGestureRecognizer(tap)
+        
+        
+    }
+    
+    
+    func hideKeyboard(sender:UITapGestureRecognizer)
+    {
+        self.view.endEditing(true)
+    }
    
     @IBAction func signIn(sender: AnyObject)
     {

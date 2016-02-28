@@ -23,9 +23,16 @@ class ResetPasswordVC: UIViewController {
     {
         super.viewDidLoad()
 
-
+        allUI()
+        
     }
 
+    func allUI()
+    {
+        emailTextField.frame = CGRectMake(10, 120, self.view.frame.size.width-20, 30)
+        resetButton.frame = CGRectMake(10, emailTextField.frame.origin.y+50, self.view.frame.size.width/4, 30)
+        cancelButton.frame = CGRectMake(self.view.frame.size.width - self.view.frame.size.width/4 - 10, resetButton.frame.origin.y, self.view.frame.size.width/4, 30)
+    }
     
     
     @IBAction func reset(sender: AnyObject)
@@ -67,6 +74,7 @@ class ResetPasswordVC: UIViewController {
     @IBAction func cancel(sender: AnyObject)
     {
         print("取消取消拉")
+        self.view.endEditing(true)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

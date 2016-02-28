@@ -38,15 +38,23 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
     {
         super.viewDidLoad()
         
-        scrollView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
-        scrollView.contentSize.height = self.view.frame.height
-        scrollViewHeight = scrollView.frame.size.height
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showKeyboard:", name: UIKeyboardWillShowNotification, object: nil)
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideKeyboard:", name: UIKeyboardWillHideNotification, object: nil)
         
         
+        allUI()
+        
+        
+    }
+
+    func allUI()
+    {
+        scrollView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        scrollView.contentSize.height = self.view.frame.height
+        scrollViewHeight = scrollView.frame.size.height
+
         avaImage.layer.cornerRadius = avaImage.frame.size.width/2
         avaImage.clipsToBounds = true
         
@@ -68,16 +76,21 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
         userNameTextField.frame = CGRectMake(10, avaImage.frame.origin.y + 90, self.view.frame.size.width - 20, 30)
         passwordTextField.frame =
             CGRectMake(10, userNameTextField.frame.origin.y + 40, self.view.frame.size.width - 20, 30)
-       
         repeatPassordTextField.frame =
             CGRectMake(10, passwordTextField.frame.origin.y + 40, self.view.frame.size.width - 20, 30)
-        
         emailTextField.frame =
             CGRectMake(10, repeatPassordTextField.frame.origin.y + 60, self.view.frame.size.width - 20, 30)
+        fullNameTextField.frame =
+            CGRectMake(10, emailTextField.frame.origin.y + 40, self.view.frame.size.width - 20, 30)
+        bioTextField.frame =
+            CGRectMake(10, fullNameTextField.frame.origin.y + 40, self.view.frame.size.width - 20, 30)
+        webTextField.frame =
+            CGRectMake(10, fullNameTextField.frame.origin.y + 40, self.view.frame.size.width - 20, 30)
+        signUpButton.frame = CGRectMake(10, webTextField.frame.origin.y + 50, self.view.frame.size.width/4, 30)
+        cancelButton.frame = CGRectMake(self.view.frame.size.width - self.view.frame.size.width/4 - 20, signUpButton.frame.origin.y, self.view.frame.size.width/4, 30)
         
         
     }
-
     
     
     func loadImage(recoginizer:UITapGestureRecognizer)
@@ -189,6 +202,7 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
     @IBAction func cancel(sender: AnyObject)
     {
         print("我要取消")
+        self.view.endEditing(true)
         self.dismissViewControllerAnimated(true, completion:nil)
     }
     
