@@ -65,10 +65,10 @@
 		B2D85F881C7B530F00108483 /* JohnnyGram */ = {
 			isa = PBXGroup;
 			children = (
+				B2D85F891C7B530F00108483 /* AppDelegate.swift */,
 				B2D85F9B1C7B5C9D00108483 /* SignInVC.swift */,
 				B2D85F9D1C7B5CAB00108483 /* SignUpVC.swift */,
 				B2D85F9F1C7B5CC100108483 /* ResetPasswordVC.swift */,
-				B2D85F891C7B530F00108483 /* AppDelegate.swift */,
 				B2D85F8D1C7B530F00108483 /* Main.storyboard */,
 				B2D85F901C7B530F00108483 /* Assets.xcassets */,
 				B2D85F921C7B530F00108483 /* LaunchScreen.storyboard */,

@@ -16,10 +16,10 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var repeatPassordTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var bioTextField: UITextField!
     @IBOutlet weak var webTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
 
     
     @IBOutlet weak var signUpButton: UIButton!
@@ -61,6 +61,20 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
         avaTap.numberOfTapsRequired = 1
         self.avaImage.userInteractionEnabled = true
         avaImage.addGestureRecognizer(avaTap)
+        
+        
+        ////位置大小
+        avaImage.frame = CGRectMake(self.view.frame.size.width/2 - 40, 40, 80, 80)
+        userNameTextField.frame = CGRectMake(10, avaImage.frame.origin.y + 90, self.view.frame.size.width - 20, 30)
+        passwordTextField.frame =
+            CGRectMake(10, userNameTextField.frame.origin.y + 40, self.view.frame.size.width - 20, 30)
+       
+        repeatPassordTextField.frame =
+            CGRectMake(10, passwordTextField.frame.origin.y + 40, self.view.frame.size.width - 20, 30)
+        
+        emailTextField.frame =
+            CGRectMake(10, repeatPassordTextField.frame.origin.y + 60, self.view.frame.size.width - 20, 30)
+        
         
     }
 

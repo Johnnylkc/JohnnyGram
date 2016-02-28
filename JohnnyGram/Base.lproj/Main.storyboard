@@ -77,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-93" y="265"/>
+            <point key="canvasLocation" x="-536" y="271"/>
         </scene>
         <!--Sign UpVC-->
         <scene sceneID="PT5-2m-tRZ">
@@ -181,7 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOT-g5-rJD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="333" y="265"/>
+            <point key="canvasLocation" x="-102" y="271"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="8ey-9v-cjP">
@@ -196,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Sh-jF-l8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="265"/>
+            <point key="canvasLocation" x="713" y="277"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2UU-s6-0hk">
@@ -213,7 +213,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJn-fp-YMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="709" y="265"/>
+            <point key="canvasLocation" x="285" y="271"/>
         </scene>
         <!--Reset PasswordVC-->
         <scene sceneID="TSy-cV-LtO">
