@@ -101,11 +101,7 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
     
     func loadImage(recoginizer:UITapGestureRecognizer)
     {
-//        let picker = UIImagePickerController()
-//        picker.delegate = self
-//        picker.sourceType = .PhotoLibrary
-//        picker.allowsEditing = true
-//        self.presentViewController(picker, animated: true, completion: nil)
+
 
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -204,7 +200,11 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
             }
             else
             {
-                print(error)
+                let alert =
+                UIAlertController(title: "發現錯誤", message: error?.localizedDescription, preferredStyle: .Alert)
+                let ok = UIAlertAction(title: "我知道了", style: .Cancel, handler: nil)
+                alert.addAction(ok)
+                self.presentViewController(alert, animated: true, completion: nil)
                 print("有些錯誤")
             }
         }

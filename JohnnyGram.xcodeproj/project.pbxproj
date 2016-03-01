@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		74A6EB6A16366C2AE75CFD18 /* Pods_JohnnyGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74278E60F0606B614CE2A308 /* Pods_JohnnyGram.framework */; };
+		B21D83FC1C857B370042376F /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D83FB1C857B370042376F /* HomeVC.swift */; };
+		B21D83FE1C857B750042376F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D83FD1C857B750042376F /* HeaderView.swift */; };
+		B21D84001C857ED60042376F /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D83FF1C857ED60042376F /* PictureCell.swift */; };
 		B298FDD21C854B2C00D61D38 /* KaushanScript-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B298FDD11C854B2C00D61D38 /* KaushanScript-Regular.otf */; };
 		B2D85F8A1C7B530F00108483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D85F891C7B530F00108483 /* AppDelegate.swift */; };
 		B2D85F8F1C7B530F00108483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D85F8D1C7B530F00108483 /* Main.storyboard */; };
@@ -20,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		74278E60F0606B614CE2A308 /* Pods_JohnnyGram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JohnnyGram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B21D83FB1C857B370042376F /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		B21D83FD1C857B750042376F /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		B21D83FF1C857ED60042376F /* PictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureCell.swift; sourceTree = "<group>"; };
 		B298FDD11C854B2C00D61D38 /* KaushanScript-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KaushanScript-Regular.otf"; sourceTree = "<group>"; };
 		B2D85F861C7B530F00108483 /* JohnnyGram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JohnnyGram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D85F891C7B530F00108483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +77,9 @@
 				B2D85F9B1C7B5C9D00108483 /* SignInVC.swift */,
 				B2D85F9D1C7B5CAB00108483 /* SignUpVC.swift */,
 				B2D85F9F1C7B5CC100108483 /* ResetPasswordVC.swift */,
+				B21D83FB1C857B370042376F /* HomeVC.swift */,
+				B21D83FD1C857B750042376F /* HeaderView.swift */,
+				B21D83FF1C857ED60042376F /* PictureCell.swift */,
 				B2D85F8D1C7B530F00108483 /* Main.storyboard */,
 				B2D85F901C7B530F00108483 /* Assets.xcassets */,
 				B2D85F921C7B530F00108483 /* LaunchScreen.storyboard */,
@@ -221,8 +230,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2D85F9C1C7B5C9D00108483 /* SignInVC.swift in Sources */,
+				B21D83FE1C857B750042376F /* HeaderView.swift in Sources */,
+				B21D83FC1C857B370042376F /* HomeVC.swift in Sources */,
 				B2D85F9E1C7B5CAB00108483 /* SignUpVC.swift in Sources */,
 				B2D85F8A1C7B530F00108483 /* AppDelegate.swift in Sources */,
+				B21D84001C857ED60042376F /* PictureCell.swift in Sources */,
 				B2D85FA01C7B5CC100108483 /* ResetPasswordVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

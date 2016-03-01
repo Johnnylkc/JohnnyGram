@@ -28,10 +28,7 @@ class SignInVC: UIViewController {
         super.viewDidLoad()
         
         allUI()
-        
-        
-        
-        
+                
     }
 
     
@@ -75,6 +72,7 @@ class SignInVC: UIViewController {
         print("你按了登入")
         self.view.endEditing(true)
         
+        ////如果有任何一個textField沒填寫 就跳出alert
         if userNameTextField.text!.isEmpty || passwordTextField.text!.isEmpty
         {
             let alert = UIAlertController(title: "hello", message: "你有些資料沒填完喔", preferredStyle: .Alert)
@@ -83,6 +81,7 @@ class SignInVC: UIViewController {
             self.presentViewController(alert, animated: true, completion: nil)
         }
         
+        ////帕斯登入 如果沒有任何錯誤就登入 順便寫入userDefault
         PFUser.logInWithUsernameInBackground(userNameTextField.text!, password:passwordTextField.text!) { (user:PFUser?, error:NSError?) -> Void in
             
             if error == nil
@@ -92,6 +91,15 @@ class SignInVC: UIViewController {
                 
                 let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 appDelegate.login()
+                
+            }
+            else
+            {
+                let alert =
+                UIAlertController(title: "發現錯誤", message: error?.localizedDescription, preferredStyle: .Alert)
+                let ok = UIAlertAction(title: "我知道了", style: .Cancel, handler: nil)
+                alert.addAction(ok)
+                self.presentViewController(alert, animated: true, completion: nil)
                 
             }
             
