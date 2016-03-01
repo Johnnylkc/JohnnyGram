@@ -14,11 +14,17 @@ class HomeVC: UICollectionViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+    
+        collectionView?.backgroundColor = UIColor.whiteColor()
+       
+        ////navi title 是這個user的username
+        self.navigationItem.title = PFUser.currentUser()?.username?.uppercaseString
 
        
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -43,16 +49,15 @@ class HomeVC: UICollectionViewController {
         header.bioLabel.text = PFUser.currentUser()?.objectForKey("bio") as? String
         header.bioLabel.sizeToFit()
         
-        header.editButton.setTitle("edit profile", forState: .Normal)
-        
-        
         let avaQuery = PFUser.currentUser()?.objectForKey("ava") as! PFFile
         avaQuery.getDataInBackgroundWithBlock { (data:NSData?, error:NSError?) -> Void in
             
             header.avaImage.image = UIImage(data: data!)
             
-            
         }
+        
+        header.editButton.setTitle("edit profile", forState: .Normal)
+
         
         return header
     }
@@ -101,6 +106,6 @@ class HomeVC: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     
     }
-    */
+    *///
 
 }
