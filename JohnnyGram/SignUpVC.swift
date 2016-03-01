@@ -65,6 +65,7 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
         self.view.userInteractionEnabled = true
         self.view.addGestureRecognizer(hideTap)
         
+        ////在那個大頭貼上加UITapGestureRecognizer 而不是加按鈕 按了之後開啟相機膠卷
         let avaTap = UITapGestureRecognizer(target: self, action: "loadImage:")
         avaTap.numberOfTapsRequired = 1
         self.avaImage.userInteractionEnabled = true
@@ -89,17 +90,29 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
         signUpButton.frame = CGRectMake(10, webTextField.frame.origin.y + 50, self.view.frame.size.width/4, 30)
         cancelButton.frame = CGRectMake(self.view.frame.size.width - self.view.frame.size.width/4 - 20, signUpButton.frame.origin.y, self.view.frame.size.width/4, 30)
         
+        ////背景圖片
+        let backImage = UIImageView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height))
+        backImage.image = UIImage(named: "a02")
+        backImage.layer.zPosition = -1
+        self.view.addSubview(backImage)
         
     }
     
     
     func loadImage(recoginizer:UITapGestureRecognizer)
     {
+//        let picker = UIImagePickerController()
+//        picker.delegate = self
+//        picker.sourceType = .PhotoLibrary
+//        picker.allowsEditing = true
+//        self.presentViewController(picker, animated: true, completion: nil)
+
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .PhotoLibrary
         picker.allowsEditing = true
-        presentViewController(picker, animated: true, completion: nil)
+        self.presentViewController(picker, animated: true, completion: nil)
+        
     }
     
     

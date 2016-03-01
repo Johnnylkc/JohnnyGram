@@ -32,6 +32,12 @@ class ResetPasswordVC: UIViewController {
         emailTextField.frame = CGRectMake(10, 120, self.view.frame.size.width-20, 30)
         resetButton.frame = CGRectMake(10, emailTextField.frame.origin.y+50, self.view.frame.size.width/4, 30)
         cancelButton.frame = CGRectMake(self.view.frame.size.width - self.view.frame.size.width/4 - 10, resetButton.frame.origin.y, self.view.frame.size.width/4, 30)
+        
+        ////背景圖片
+        let backImage = UIImageView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height))
+        backImage.image = UIImage(named: "a03")
+        backImage.layer.zPosition = -1
+        self.view.addSubview(backImage)
     }
     
     

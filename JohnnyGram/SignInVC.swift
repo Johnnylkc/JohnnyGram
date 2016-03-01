@@ -38,7 +38,9 @@ class SignInVC: UIViewController {
     func allUI()
     {
         ////所有UI frame
-        johnnyGramLabel.frame = CGRectMake(10, 80, self.view.frame.size.width-20, 50)
+        johnnyGramLabel.frame = CGRectMake(10, 80, self.view.frame.size.width-20, 60)
+        johnnyGramLabel.font = UIFont(name: "KaushanScript-Regular", size: 40)
+        
         userNameTextField.frame = CGRectMake(10, johnnyGramLabel.frame.origin.y+70, self.view.frame.size.width-20, 30)
         passwordTextField.frame = CGRectMake(10, userNameTextField.frame.origin.y+40, self.view.frame.size.width-20, 30)
         forgetButton.frame = CGRectMake(10, passwordTextField.frame.origin.y+30, self.view.frame.size.width-20, 30)
@@ -50,6 +52,14 @@ class SignInVC: UIViewController {
         tap.numberOfTapsRequired = 1
         self.view.userInteractionEnabled = true
         self.view.addGestureRecognizer(tap)
+        
+        ////背景圖片
+        let backImage = UIImageView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height))
+        backImage.image = UIImage(named: "a01")
+        backImage.layer.zPosition = -1
+        self.view.addSubview(backImage)
+        
+        
         
         
     }

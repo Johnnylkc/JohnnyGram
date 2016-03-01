@@ -22,7 +22,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="F3n-tW-sug">
                                 <rect key="frame" x="20" y="221" width="126" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="forget password"/>
+                                <state key="normal" title="forget password">
+                                    <color key="titleColor" red="0.98996394229999995" green="0.98996394229999995" blue="0.98996394229999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="Be1-Y2-gNg" kind="modal" id="yh0-Ib-v8V"/>
                                 </connections>

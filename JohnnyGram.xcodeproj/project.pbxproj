@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		74A6EB6A16366C2AE75CFD18 /* Pods_JohnnyGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74278E60F0606B614CE2A308 /* Pods_JohnnyGram.framework */; };
+		B298FDD21C854B2C00D61D38 /* KaushanScript-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B298FDD11C854B2C00D61D38 /* KaushanScript-Regular.otf */; };
 		B2D85F8A1C7B530F00108483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D85F891C7B530F00108483 /* AppDelegate.swift */; };
 		B2D85F8F1C7B530F00108483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D85F8D1C7B530F00108483 /* Main.storyboard */; };
 		B2D85F911C7B530F00108483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2D85F901C7B530F00108483 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		74278E60F0606B614CE2A308 /* Pods_JohnnyGram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JohnnyGram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B298FDD11C854B2C00D61D38 /* KaushanScript-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KaushanScript-Regular.otf"; sourceTree = "<group>"; };
 		B2D85F861C7B530F00108483 /* JohnnyGram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JohnnyGram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D85F891C7B530F00108483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2D85F8E1C7B530F00108483 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				B2D85F901C7B530F00108483 /* Assets.xcassets */,
 				B2D85F921C7B530F00108483 /* LaunchScreen.storyboard */,
 				B2D85F951C7B530F00108483 /* Info.plist */,
+				B298FDD11C854B2C00D61D38 /* KaushanScript-Regular.otf */,
 			);
 			path = JohnnyGram;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 				B2D85F941C7B530F00108483 /* LaunchScreen.storyboard in Resources */,
 				B2D85F911C7B530F00108483 /* Assets.xcassets in Resources */,
 				B2D85F8F1C7B530F00108483 /* Main.storyboard in Resources */,
+				B298FDD21C854B2C00D61D38 /* KaushanScript-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
