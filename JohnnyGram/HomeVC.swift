@@ -7,21 +7,15 @@
 //
 
 import UIKit
-
-private let reuseIdentifier = "Cell"
+import Parse
 
 class HomeVC: UICollectionViewController {
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,29 +23,46 @@ class HomeVC: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
+  
+ 
+
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return 0
+    }
+
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
+    {
+        let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", forIndexPath: indexPath) as! HeaderView
+
+        header.fullNameLabel.text = (PFUser.currentUser()?.objectForKey("fullName") as? String)?.uppercaseString
+        
+        header.webTextView.text = PFUser.currentUser()?.objectForKey("web") as? String
+        header.webTextView.sizeToFit()
+        
+        header.bioLabel.text = PFUser.currentUser()?.objectForKey("bio") as? String
+        header.bioLabel.sizeToFit()
+        
+        header.editButton.setTitle("edit profile", forState: .Normal)
+        
+        
+        let avaQuery = PFUser.currentUser()?.objectForKey("ava") as! PFFile
+        avaQuery.getDataInBackgroundWithBlock { (data:NSData?, error:NSError?) -> Void in
+            
+            header.avaImage.image = UIImage(data: data!)
+            
+            
+        }
+        
+        return header
+    }
+
+
+
+
+
+
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
-    }
-
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
     
@@ -59,6 +70,7 @@ class HomeVC: UICollectionViewController {
     
         return cell
     }
+    */
 
     // MARK: UICollectionViewDelegate
 

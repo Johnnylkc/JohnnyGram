@@ -205,7 +205,7 @@
         <!--HomeVC-->
         <scene sceneID="7I6-t7-2sj">
             <objects>
-                <collectionViewController id="veg-cs-S2Z" customClass="HomeVC" customModule="JohnnyGram" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="HomeVC" id="veg-cs-S2Z" customClass="HomeVC" customModule="JohnnyGram" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ehL-vC-kkd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
