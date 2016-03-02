@@ -69,7 +69,7 @@ class SignInVC: UIViewController {
    
     @IBAction func signIn(sender: AnyObject)
     {
-        print("你按了登入")
+        print("你按了登入 正在登入...")
         self.view.endEditing(true)
         
         ////如果有任何一個textField沒填寫 就跳出alert

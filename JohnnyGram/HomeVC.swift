@@ -52,7 +52,7 @@ class HomeVC: UICollectionViewController {
             
             if error == nil
             {
-                ////先把這兩個array淨空 不管裡面有沒有東西 先清空
+                ////先把這兩個array淨空 不管裡面有沒有東西 先清空 為的是避免裡面有bug
                 self.uuidArray.removeAll(keepCapacity: false)
                 self.picArray.removeAll(keepCapacity: false)
 
@@ -129,7 +129,45 @@ class HomeVC: UICollectionViewController {
         }
         
         header.editButton.setTitle("edit profile", forState: .Normal)
+        
+       
+        ////計算這個user總共的po文有幾則
+        let posts = PFQuery(className: "posts")
+        posts.whereKey("userName", equalTo: PFUser.currentUser()!.username!)
+        posts.countObjectsInBackgroundWithBlock { (count:Int32, error:NSError?) -> Void in
+            
+            if error == nil
+            {
+                header.postsNumberLabel.text = "\(count)"
+            }
+        }
 
+        
+        ////計算這個user有幾個人在follow
+        let followers = PFQuery(className: "follow")
+        followers.whereKey("follower", equalTo: PFUser.currentUser()!.username!)
+        followers.countObjectsInBackgroundWithBlock { (count:Int32, error:NSError?) -> Void in
+            
+            if error == nil
+            {
+                header.followersNumberLabel.text = "\(count)"
+            }
+            
+        }
+        
+        
+        ////計算這個user正在追蹤的有多少人
+        let following = PFQuery(className: "follow")
+        following.whereKey("following", equalTo: PFUser.currentUser()!.username!)
+        following.countObjectsInBackgroundWithBlock { (count:Int32, error:NSError?) -> Void in
+            
+            if error == nil
+            {
+                header.followingsNumberLabel.text = "\(count)"
+            }
+        }
+        
+        
         
         return header
     }
@@ -178,6 +216,5 @@ class HomeVC: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     
     }
-    *//////
-
+    */
 }

@@ -17,7 +17,7 @@ class HeaderView: UICollectionReusableView {
     
     
     @IBOutlet weak var postsNumberLabel: UILabel!
-    @IBOutlet weak var follersNumberLabel: UILabel!
+    @IBOutlet weak var followersNumberLabel: UILabel!
     @IBOutlet weak var followingsNumberLabel: UILabel!
     
     

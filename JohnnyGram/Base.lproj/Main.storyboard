@@ -328,7 +328,7 @@
                                 <outlet property="avaImage" destination="5p8-8G-Dcf" id="UoV-yq-2z7"/>
                                 <outlet property="bioLabel" destination="a1a-1g-ODe" id="xyc-SQ-81E"/>
                                 <outlet property="editButton" destination="qLW-ue-TPO" id="cGl-1P-nDP"/>
-                                <outlet property="follersNumberLabel" destination="mkl-WX-NA4" id="wJ9-kk-ZGg"/>
+                                <outlet property="followersNumberLabel" destination="mkl-WX-NA4" id="geH-Qz-AXr"/>
                                 <outlet property="followersTitleLabel" destination="YFt-4h-L4N" id="a8s-en-iYx"/>
                                 <outlet property="followingsNumberLabel" destination="ucU-Dw-PmG" id="Ryb-Vd-C0v"/>
                                 <outlet property="followingsTitleLabel" destination="Njs-Yj-rhh" id="pk7-Rr-Pbg"/>
