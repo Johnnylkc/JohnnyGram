@@ -39,6 +39,7 @@ class HomeVC: UICollectionViewController {
     func refresh()
     {
         collectionView?.reloadData()
+        refresher.endRefreshing()
     }
     
     ////下載資料 在viewDidLoad執行

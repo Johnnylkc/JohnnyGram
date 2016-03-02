@@ -74,20 +74,29 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
         
         ////位置大小
         avaImage.frame = CGRectMake(self.view.frame.size.width/2 - 40, 40, 80, 80)
+        
         userNameTextField.frame = CGRectMake(10, avaImage.frame.origin.y + 90, self.view.frame.size.width - 20, 30)
+        
         passwordTextField.frame =
             CGRectMake(10, userNameTextField.frame.origin.y + 40, self.view.frame.size.width - 20, 30)
+        
         repeatPassordTextField.frame =
             CGRectMake(10, passwordTextField.frame.origin.y + 40, self.view.frame.size.width - 20, 30)
+       
         emailTextField.frame =
             CGRectMake(10, repeatPassordTextField.frame.origin.y + 60, self.view.frame.size.width - 20, 30)
+        
         fullNameTextField.frame =
             CGRectMake(10, emailTextField.frame.origin.y + 40, self.view.frame.size.width - 20, 30)
+        
         bioTextField.frame =
             CGRectMake(10, fullNameTextField.frame.origin.y + 40, self.view.frame.size.width - 20, 30)
+        
         webTextField.frame =
-            CGRectMake(10, fullNameTextField.frame.origin.y + 40, self.view.frame.size.width - 20, 30)
+            CGRectMake(10, bioTextField.frame.origin.y + 40, self.view.frame.size.width - 20, 30)
+        
         signUpButton.frame = CGRectMake(10, webTextField.frame.origin.y + 50, self.view.frame.size.width/4, 30)
+        
         cancelButton.frame = CGRectMake(self.view.frame.size.width - self.view.frame.size.width/4 - 20, signUpButton.frame.origin.y, self.view.frame.size.width/4, 30)
         
         ////背景圖片
