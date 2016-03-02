@@ -168,14 +168,65 @@ class HomeVC: UICollectionViewController {
         }
         
         
+        ////在po文 追蹤者 追蹤中 三個Label(不是數字) 各加上UITapGestureRecognizer
+        ////po文Label
+        let postsTap = UITapGestureRecognizer(target: self, action: "postsTap")
+        postsTap.numberOfTapsRequired = 1
+        header.postsNumberLabel.userInteractionEnabled = true
+        header.postsNumberLabel.addGestureRecognizer(postsTap)
+        
+        ////追蹤者Label
+        let followersTap = UITapGestureRecognizer(target: self, action: "followersTap")
+        followersTap.numberOfTapsRequired = 1
+        header.followersNumberLabel.userInteractionEnabled = true
+        header.followersNumberLabel.addGestureRecognizer(followersTap)
+        
+        ////追蹤中Label
+        let followingTap = UITapGestureRecognizer(target: self, action: "followingTap")
+        followingTap.numberOfTapsRequired = 1
+        header.followingsNumberLabel.userInteractionEnabled = true
+        header.followingsNumberLabel.addGestureRecognizer(followingTap)
+        
         
         return header
     }
 
+    
+    ////po文 追蹤者 追蹤中 三個Label 加在之上的UITapGestureRecognizer action 執行
+    func postsTap()
+    {
+        if !picArray.isEmpty
+        {
+            let index = NSIndexPath(forItem: 0, inSection: 0)
+            self.collectionView?.scrollToItemAtIndexPath(index, atScrollPosition: .Top, animated: true)
+        }
+    
+    }
+
+    func followersTap()
+    {
+        user = PFUser.currentUser()!.username!
+        show = "followers"
+        
+        let followers = self.storyboard?.instantiateViewControllerWithIdentifier("FollowersTVC") as! FollowersTVC
+        self.navigationController?.pushViewController(followers, animated: true)
+        
+        
+    }
 
 
-
-
+    func followingTap()
+    {
+        user = PFUser.currentUser()!.username!
+        show = "followings"
+        
+        let follwers = self.storyboard?.instantiateViewControllerWithIdentifier("FollowersTVC") as! FollowersTVC
+        self.navigationController?.pushViewController(follwers, animated: true)
+        
+    }
+    
+    
+    
 
     /*
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -216,5 +267,5 @@ class HomeVC: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     
     }
-    */
+    *///
 }

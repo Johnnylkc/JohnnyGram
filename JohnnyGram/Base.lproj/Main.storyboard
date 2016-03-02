@@ -349,6 +349,59 @@
             </objects>
             <point key="canvasLocation" x="1049" y="273"/>
         </scene>
+        <!--FollowersTVC-->
+        <scene sceneID="auD-Ho-kye">
+            <objects>
+                <tableViewController storyboardIdentifier="FollowersTVC" id="gaY-A9-j3f" customClass="FollowersTVC" customModule="JohnnyGram" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="95" sectionHeaderHeight="28" sectionFooterHeight="28" id="uHQ-Qc-kQR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="95" id="3Uh-ey-XoW" customClass="FollowersCell" customModule="JohnnyGram" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="95"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Uh-ey-XoW" id="Nwh-tl-23M">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="94.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="001" id="ga2-yE-DzJ">
+                                            <rect key="frame" x="8" y="18" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="y7v-ZW-2jp">
+                                            <rect key="frame" x="76" y="33" width="139" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="0.64797126469999999" blue="0.1211910754" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cUt-Io-HOn">
+                                            <rect key="frame" x="223" y="33" width="89" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.84152538970000001" green="0.98996394229999995" blue="0.18552704310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="following"/>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="avaImage" destination="ga2-yE-DzJ" id="CNV-Ac-KpB"/>
+                                    <outlet property="followButton" destination="cUt-Io-HOn" id="r1u-4p-SBn"/>
+                                    <outlet property="userNameLabel" destination="y7v-ZW-2jp" id="g93-ch-ZKi"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gaY-A9-j3f" id="Yg5-hr-6iy"/>
+                            <outlet property="delegate" destination="gaY-A9-j3f" id="opu-XQ-5VS"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EaJ-y8-Pu1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1418" y="267"/>
+        </scene>
         <!--Reset PasswordVC-->
         <scene sceneID="TSy-cV-LtO">
             <objects>
