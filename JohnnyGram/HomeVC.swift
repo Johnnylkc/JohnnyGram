@@ -60,14 +60,14 @@ class HomeVC: UICollectionViewController {
                     self.uuidArray.append(object.valueForKey("uuid") as! String)
                     self.picArray.append(object.valueForKey("pic") as! PFFile)
                     
-                    print("okok")
                 }
                 
                 self.collectionView?.reloadData()
+                print("成功下載資料lodaPosts & reloadData")
             }
             else
             {
-                print("有問題\(error!)")
+                print("資料下載有問題\(error!)")
             }
             
         }
@@ -100,7 +100,7 @@ class HomeVC: UICollectionViewController {
             }
             else
             {
-                print("有些問題\(error!)")
+                print("item下載出問題\(error!)")
             }
         }
         
@@ -177,6 +177,6 @@ class HomeVC: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     
     }
-    *///
+    *//////
 
 }
