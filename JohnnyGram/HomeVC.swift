@@ -10,6 +10,12 @@ import UIKit
 import Parse
 
 class HomeVC: UICollectionViewController {
+    
+    var refresher : UIRefreshControl!
+    var page : Int = 10
+    var uuidArray = [String]()
+    var picArray = [PFFile]()
+    
 
     override func viewDidLoad()
     {
@@ -19,24 +25,78 @@ class HomeVC: UICollectionViewController {
        
         ////navi title 是這個user的username
         self.navigationItem.title = PFUser.currentUser()?.username?.uppercaseString
+        
+        ////下拉更新 使用UIRefreshControl
+        refresher = UIRefreshControl()
+        refresher.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        collectionView?.addSubview(refresher)
+        
 
        
     }
 
+    ////執行下拉更新action
+    func refresh()
+    {
+        collectionView?.reloadData()
+    }
+    
+    
+    func loadPosts()
+    {
+        let query = PFQuery(className: "posts")
+        query.whereKey("userName", equalTo: PFUser.currentUser()!.username!)
+        query.limit = page
+        query.findObjectsInBackgroundWithBlock ({ (objects:[PFObject]?, error:NSError?) -> Void in
+            
+            if error == nil
+            {
+                for object in objects!
+                {
+                    ////先把這兩個array淨空 不管裡面有沒有東西 先清空
+                    self.uuidArray.removeAll(keepCapacity: false)
+                    self.picArray.removeAll(keepCapacity: false)
+                    
+                    self.uuidArray.append(object.valueForKey("uuid") as! String)
+                    self.picArray.append(object.valueForKey("pic") as! PFFile)
+                    
+                }
+            
+                self.collectionView?.reloadData()
+            }
+            
+        })
+    }
+    
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-  
- 
-
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return 0
+        return picArray.count
     }
 
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    {
+        let cell =
+        collectionView.dequeueReusableCellWithReuseIdentifier("CEll", forIndexPath: indexPath) as! PictureCell
+        
+        picArray[indexPath.row].getDataInBackgroundWithBlock { (data:NSData?, error:NSError?) -> Void in
+            
+            if error == nil
+            {
+                cell.pictureImage.image = UIImage(data: data!)
+                
+            }
+        }
+        
+        return cell
+    }
+    
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
     {
         let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", forIndexPath: indexPath) as! HeaderView
