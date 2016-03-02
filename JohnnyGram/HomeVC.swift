@@ -31,7 +31,7 @@ class HomeVC: UICollectionViewController {
         refresher.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         collectionView?.addSubview(refresher)
         
-
+        loadPosts()
        
     }
 
@@ -41,31 +41,36 @@ class HomeVC: UICollectionViewController {
         collectionView?.reloadData()
     }
     
-    
+    ////下載資料 在viewDidLoad執行
     func loadPosts()
     {
         let query = PFQuery(className: "posts")
         query.whereKey("userName", equalTo: PFUser.currentUser()!.username!)
         query.limit = page
-        query.findObjectsInBackgroundWithBlock ({ (objects:[PFObject]?, error:NSError?) -> Void in
+        query.findObjectsInBackgroundWithBlock { (objects:[PFObject]?, error:NSError?) -> Void in
             
             if error == nil
             {
+                ////先把這兩個array淨空 不管裡面有沒有東西 先清空
+                self.uuidArray.removeAll(keepCapacity: false)
+                self.picArray.removeAll(keepCapacity: false)
+
                 for object in objects!
                 {
-                    ////先把這兩個array淨空 不管裡面有沒有東西 先清空
-                    self.uuidArray.removeAll(keepCapacity: false)
-                    self.picArray.removeAll(keepCapacity: false)
-                    
                     self.uuidArray.append(object.valueForKey("uuid") as! String)
                     self.picArray.append(object.valueForKey("pic") as! PFFile)
                     
+                    print("okok")
                 }
-            
+                
                 self.collectionView?.reloadData()
             }
+            else
+            {
+                print("有問題\(error!)")
+            }
             
-        })
+        }
     }
     
     
@@ -83,20 +88,26 @@ class HomeVC: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         let cell =
-        collectionView.dequeueReusableCellWithReuseIdentifier("CEll", forIndexPath: indexPath) as! PictureCell
+        collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! PictureCell
         
         picArray[indexPath.row].getDataInBackgroundWithBlock { (data:NSData?, error:NSError?) -> Void in
+            
             
             if error == nil
             {
                 cell.pictureImage.image = UIImage(data: data!)
                 
             }
+            else
+            {
+                print("有些問題\(error!)")
+            }
         }
         
         return cell
     }
     
+    ////header設定
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
     {
         let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", forIndexPath: indexPath) as! HeaderView
