@@ -201,6 +201,8 @@ class HomeVC: UICollectionViewController {
             self.collectionView?.scrollToItemAtIndexPath(index, atScrollPosition: .Top, animated: true)
         }
     
+        
+        print("yt")
     }
 
     func followersTap()

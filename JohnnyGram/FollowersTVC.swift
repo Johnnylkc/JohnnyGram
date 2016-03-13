@@ -7,47 +7,184 @@
 //
 
 import UIKit
-
+import Parse
 
 var user = String()
 var show = String()
 
 class FollowersTVC: UITableViewController {
 
+    var userNameArray = [String]()
+    var avaArray = [PFFile]()
+    var followArray = [String]()
+    
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
+        self.navigationItem.title = show.uppercaseString
+        
+        if show == "followers"
+        {
+            loadFollowers()
+        }
+        
+        if show == "followings"
+        {
+            loadFollowings()
+        }
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
+    ////從parse找出追蹤這個user的有誰
     /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+    他這方法的步驟分別是 
+    1.先進到follow這個class
+    2.再去找following這欄位裡跟目前使用者名字一樣的人
+    3.
 
-        // Configure the cell...
+
+    */
+    func loadFollowers()
+    {
+        let followQuery = PFQuery(className: "follow")
+        followQuery.whereKey("following", equalTo: user)
+        followQuery.findObjectsInBackgroundWithBlock { (objects:[PFObject]?, error:NSError?) -> Void in
+            
+            if error == nil
+            {
+                ////不管現在要使用的這個陣列之前有沒有東西 先淨空
+                self.followArray.removeAll(keepCapacity: false)
+                
+                for object in objects!
+                {
+                    self.followArray.append(object.valueForKey("follower") as! String )
+                }
+            
+                let query = PFQuery(className: "_User")
+                query.whereKey("username", containedIn: self.followArray)
+                query.addDescendingOrder("creatAt")
+                query.findObjectsInBackgroundWithBlock({ (objects:[PFObject]?, error:NSError?) -> Void in
+                    
+                    if error == nil
+                    {
+                        ////不管現在要使用的這個陣列之前有沒有東西 先淨空
+                        self.userNameArray.removeAll(keepCapacity: false)
+                        self.avaArray.removeAll(keepCapacity:false)
+
+                        for object in objects!
+                        {
+                            self.userNameArray.append(object.valueForKey("username") as! String)
+                            self.avaArray.append(object.valueForKey("ava") as! PFFile)
+                        }
+                    
+                        self.tableView.reloadData()
+                    }
+                    else
+                    {
+                        print("loadFollowers 第二層 發生錯誤\(error)")
+                    }
+                })
+            
+            }
+            else
+            {
+                print("loadFollowers 第一層 發生錯誤 \(error)")
+            }
+        }
+        
+    }
+    
+    ////從parse找出這個user正在追蹤誰
+    func loadFollowings()
+    {
+        let followQuery = PFQuery(className: "follow")
+        followQuery.whereKey("follower", equalTo: user)
+        followQuery.findObjectsInBackgroundWithBlock { (objects:[PFObject]?, error:NSError?) -> Void in
+            
+            if error == nil
+            {
+                self.followArray.removeAll(keepCapacity: false)
+                
+                for object in objects!
+                {
+                    self.followArray.append(object.valueForKey("following") as! String)
+                }
+                
+                let query = PFQuery(className: "_User")
+                query.whereKey("username", containedIn: self.followArray)
+                query.findObjectsInBackgroundWithBlock({ (objects:[PFObject]?, error:NSError?) -> Void in
+                    
+                    if error == nil
+                    {
+                        self.userNameArray.removeAll(keepCapacity: false)
+                        self.avaArray.removeAll(keepCapacity: false)
+                    
+                        for object in objects!
+                        {
+                            self.userNameArray.append(object.valueForKey("username") as! String )
+                            self.avaArray.append(object.valueForKey("ava") as! PFFile)
+                        }
+                    
+                        self.tableView.reloadData()
+
+                    }
+                    else
+                    {
+                        print("有些錯誤\(error)")
+                    }
+                    
+                })
+                
+                
+            }
+            else
+            {
+                print("有錯誤\(error)")
+            }
+        
+            
+        }
+        
+        
+    }
+    
+
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return userNameArray.count
+    }
+
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FollowersCell
+        
+        cell.userNameLabel.text = userNameArray[indexPath.row]
+        
+        print(cell.userNameLabel.text)
+        
+        avaArray[indexPath.row].getDataInBackgroundWithBlock { (data:NSData?, error:NSError?) -> Void in
+            
+            if error == nil
+            {
+                cell.avaImage.image = UIImage(data: data!)
+            }
+            else
+            {
+                print("圖片下載有問題\(error)")
+            }
+            
+        }
+
+       
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
