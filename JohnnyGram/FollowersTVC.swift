@@ -138,16 +138,13 @@ class FollowersTVC: UITableViewController {
                     
                 })
                 
-                
             }
             else
             {
                 print("有錯誤\(error)")
             }
         
-            
         }
-        
         
     }
     
@@ -165,8 +162,6 @@ class FollowersTVC: UITableViewController {
         
         cell.userNameLabel.text = userNameArray[indexPath.row]
         
-        print(cell.userNameLabel.text)
-        
         avaArray[indexPath.row].getDataInBackgroundWithBlock { (data:NSData?, error:NSError?) -> Void in
             
             if error == nil
@@ -181,7 +176,36 @@ class FollowersTVC: UITableViewController {
         }
 
        
-
+        
+        let query = PFQuery(className: "follow")
+        query.whereKey("follower", equalTo: PFUser.currentUser()!.username!)
+        query.whereKey("following", equalTo: cell.userNameLabel.text!)
+        query.countObjectsInBackgroundWithBlock { (count:Int32, error:NSError?) -> Void in
+            
+            if error == nil
+            {
+                if count == 0
+                {
+                    cell.followButton.setTitle("FOLLOW", forState:.Normal)
+                    cell.followButton.backgroundColor = UIColor.lightGrayColor()
+                }
+                else
+                {
+                    cell.followButton.setTitle("FOLLOWING", forState: .Normal)
+                    cell.followButton.backgroundColor = UIColor.greenColor()
+                }
+            }
+        
+        }
+        
+        
+        
+        if cell.userNameLabel.text == PFUser.currentUser()?.username
+        {
+            cell.followButton.hidden = true
+        }
+        
+        
         return cell
     }
     

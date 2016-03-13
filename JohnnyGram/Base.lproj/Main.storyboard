@@ -358,7 +358,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="95" id="3Uh-ey-XoW" customClass="FollowersCell" customModule="JohnnyGram" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="95" id="3Uh-ey-XoW" customClass="FollowersCell" customModule="JohnnyGram" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="95"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Uh-ey-XoW" id="Nwh-tl-23M">
@@ -380,8 +380,11 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cUt-Io-HOn">
                                             <rect key="frame" x="223" y="33" width="89" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.84152538970000001" green="0.98996394229999995" blue="0.18552704310000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <state key="normal" title="following"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="folowButtonClick:" destination="3Uh-ey-XoW" eventType="touchUpInside" id="K9H-jE-NMI"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>

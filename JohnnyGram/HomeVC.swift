@@ -200,9 +200,6 @@ class HomeVC: UICollectionViewController {
             let index = NSIndexPath(forItem: 0, inSection: 0)
             self.collectionView?.scrollToItemAtIndexPath(index, atScrollPosition: .Top, animated: true)
         }
-    
-        
-        print("yt")
     }
 
     func followersTap()
@@ -212,7 +209,6 @@ class HomeVC: UICollectionViewController {
         
         let followers = self.storyboard?.instantiateViewControllerWithIdentifier("FollowersTVC") as! FollowersTVC
         self.navigationController?.pushViewController(followers, animated: true)
-        
         
     }
 

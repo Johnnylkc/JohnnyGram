@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class FollowersCell: UITableViewCell {
     
@@ -16,10 +17,84 @@ class FollowersCell: UITableViewCell {
     
     
 
-    override func awakeFromNib() {
+    override func awakeFromNib()
+    {
         super.awakeFromNib()
-        // Initialization code
+
+        avaImage.layer.cornerRadius = avaImage.frame.size.width / 2
+        avaImage.clipsToBounds = true
+        
+    
+    
+    
     }
+    
+    
+    
+    @IBAction func folowButtonClick(sender: AnyObject)
+    {
+        let title = followButton.titleForState(.Normal)
+        
+        //////追蹤他
+        if title == "FOLLOW"
+        {
+            let object = PFObject(className: "follow")
+            object["follower"] = PFUser.currentUser()?.username
+            object["following"] = userNameLabel.text
+            object.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
+                
+                if success
+                {
+                    self.followButton.setTitle("FOLLOWING", forState: .Normal)
+                    self.followButton.backgroundColor = UIColor.greenColor()
+                }
+                else
+                {
+                    print(error)
+                }
+            })
+        }
+        else ///// 取消追蹤
+        {
+            let query = PFQuery(className: "follow")
+            query.whereKey("follower", equalTo: PFUser.currentUser()!.username!)
+            query.whereKey("following", equalTo: userNameLabel.text!)
+            query.findObjectsInBackgroundWithBlock({ (objects:[PFObject]?, error:NSError?) -> Void in
+                
+                if error == nil
+                {
+                    for object in objects!
+                    {
+                        object.deleteInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
+                            
+                            if success
+                            {
+                                self.followButton.setTitle("FOLLOW", forState: .Normal)
+                                self.followButton.backgroundColor = UIColor.lightGrayColor()
+                            }
+                            else
+                            {
+                                print("取消追蹤有問題\(error)")
+                            }
+                            
+                        })
+                    }
+                }
+                else
+                {
+                    print("取消追蹤有些問題喔\(error)")
+                }
+                
+            })
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
