@@ -188,6 +188,7 @@ class FollowersTVC: UITableViewController {
                 {
                     cell.followButton.setTitle("FOLLOW", forState:.Normal)
                     cell.followButton.backgroundColor = UIColor.lightGrayColor()
+                    
                 }
                 else
                 {
@@ -210,6 +211,31 @@ class FollowersTVC: UITableViewController {
     }
     
 
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! FollowersCell
+        
+        ////如果currentuser點擊到他自己 那就到他自己的首頁 如果不是那就到他點擊的那個人的頁面
+        if cell.userNameLabel.text! == PFUser.currentUser()!.username!
+        {
+            let home = storyboard?.instantiateViewControllerWithIdentifier("homeVC") as! HomeVC
+            self.navigationController?.pushViewController(home, animated: true)
+        }
+        else
+        {
+            guestName.append(cell.userNameLabel.text!)
+            let guest = storyboard?.instantiateViewControllerWithIdentifier("guestVC") as! GuestVC
+            self.navigationController?.pushViewController(guest, animated: true)
+        }
+        
+        print("kkk")
+
+    }
+    
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

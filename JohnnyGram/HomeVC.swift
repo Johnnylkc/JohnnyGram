@@ -21,6 +21,9 @@ class HomeVC: UICollectionViewController {
     {
         super.viewDidLoad()
     
+        //有加這句 就算這個使用者的po文 少到不需要拖拉就能看完 也可以有bouce 不然原本是沒有bouce的
+        self.collectionView?.alwaysBounceVertical = true
+        
         collectionView?.backgroundColor = UIColor.whiteColor()
        
         ////navi title 是這個user的username

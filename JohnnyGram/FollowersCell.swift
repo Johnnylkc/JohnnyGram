@@ -34,7 +34,7 @@ class FollowersCell: UITableViewCell {
     @IBAction func folowButtonClick(sender: AnyObject)
     {
         let title = followButton.titleForState(.Normal)
-        
+
         //////追蹤他
         if title == "FOLLOW"
         {
