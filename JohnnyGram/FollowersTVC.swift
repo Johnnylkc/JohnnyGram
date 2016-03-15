@@ -230,7 +230,6 @@ class FollowersTVC: UITableViewController {
             self.navigationController?.pushViewController(guest, animated: true)
         }
         
-        print("kkk")
 
     }
     

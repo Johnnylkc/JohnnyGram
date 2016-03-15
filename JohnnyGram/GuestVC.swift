@@ -4,7 +4,7 @@
 //
 //  Created by 劉坤昶 on 2016/3/13.
 //  Copyright © 2016年 JohnnyKetchup. All rights reserved.
-//
+////
 
 import UIKit
 import Parse
@@ -27,6 +27,7 @@ class GuestVC: UICollectionViewController {
         super.viewDidLoad()
 
         self.collectionView?.alwaysBounceVertical = true
+        self.collectionView?.backgroundColor = UIColor.whiteColor()
         
         self.navigationItem.title = guestName.last
         
@@ -283,7 +284,7 @@ class GuestVC: UICollectionViewController {
         user = guestName.last!
         show = "followers"
         
-        let followers = storyboard?.instantiateViewControllerWithIdentifier("followersVC") as! FollowersTVC
+        let followers = storyboard?.instantiateViewControllerWithIdentifier("followersTVC") as! FollowersTVC
         self.navigationController?.pushViewController(followers, animated: true)
     }
     
