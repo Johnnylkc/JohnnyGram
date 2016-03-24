@@ -12,4 +12,14 @@ class PictureCell: UICollectionViewCell {
     
     @IBOutlet weak var pictureImage: UIImageView!
     
+    override func awakeFromNib()
+    {
+        super.awakeFromNib()
+        
+        let width = UIScreen.mainScreen().bounds.width
+        
+        pictureImage.frame = CGRectMake(0, 0, width/3, width/3)
+        
+    }
+    
 }

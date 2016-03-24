@@ -155,6 +155,10 @@ class FollowersTVC: UITableViewController {
         return userNameArray.count
     }
 
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        return self.view.frame.size.width / 4 
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
@@ -226,7 +230,7 @@ class FollowersTVC: UITableViewController {
         else
         {
             guestName.append(cell.userNameLabel.text!)
-            let guest = storyboard?.instantiateViewControllerWithIdentifier("guestVC") as! GuestVC
+            let guest = storyboard?.instantiateViewControllerWithIdentifier("GuestVC") as! GuestVC
             self.navigationController?.pushViewController(guest, animated: true)
         }
         

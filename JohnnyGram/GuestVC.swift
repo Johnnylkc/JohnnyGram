@@ -15,9 +15,7 @@ var guestName = [String]() ////寫在這邊就像寫在.h 可以接別的control
 class GuestVC: UICollectionViewController {
     
     var refresher : UIRefreshControl!
-    
-    
-    
+        
     var uuidArray = [String]()
     var picArray = [PFFile]()
     var page:Int = 10
@@ -126,7 +124,7 @@ class GuestVC: UICollectionViewController {
     }
     
     
-    
+    ////header設定
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
     {
         let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", forIndexPath: indexPath) as! HeaderView
@@ -255,8 +253,8 @@ class GuestVC: UICollectionViewController {
         ////點了這個user的follower數字label 就...
         let followersTap = UITapGestureRecognizer(target: self, action: "followersTap")
         followersTap.numberOfTapsRequired = 1
-        header.followingsNumberLabel.userInteractionEnabled = true
-        header.followingsNumberLabel.addGestureRecognizer(followersTap)
+        header.followersNumberLabel.userInteractionEnabled = true
+        header.followersNumberLabel.addGestureRecognizer(followersTap)
         
         ////點了這個user的following數字label 就...
         let followingsTap = UITapGestureRecognizer(target: self, action: "followingsTap")
@@ -284,8 +282,10 @@ class GuestVC: UICollectionViewController {
         user = guestName.last!
         show = "followers"
         
-        let followers = storyboard?.instantiateViewControllerWithIdentifier("followersTVC") as! FollowersTVC
+        let followers = storyboard?.instantiateViewControllerWithIdentifier("FollowersTVC") as! FollowersTVC
         self.navigationController?.pushViewController(followers, animated: true)
+        
+        print("這到底能不能點")
     }
     
     func followingsTap()

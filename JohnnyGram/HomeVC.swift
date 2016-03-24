@@ -78,17 +78,27 @@ class HomeVC: UICollectionViewController {
     }
     
     
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+//    override func didReceiveMemoryWarning()
+//    {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return picArray.count
     }
-
+    
+    //cell size
+    func collectionView(collectionView:UICollectionView,layout colloectionViewLayout:UICollectionViewLayout,sizeForItemIndwxPath indexPath:NSIndexPath) -> CGSize
+    {
+        let size = CGSize(width: self.view.frame.size.width/3, height: self.view.frame.size.width/3)
+        return size
+        
+    }
+    
+    
+    
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         let cell =
@@ -171,7 +181,7 @@ class HomeVC: UICollectionViewController {
         }
         
         
-        ////在po文 追蹤者 追蹤中 三個Label(不是數字) 各加上UITapGestureRecognizer
+        ////在po文 追蹤者 追蹤中 三個數字 各加上UITapGestureRecognizer
         ////po文Label
         let postsTap = UITapGestureRecognizer(target: self, action: "postsTap")
         postsTap.numberOfTapsRequired = 1
@@ -226,6 +236,23 @@ class HomeVC: UICollectionViewController {
         
     }
     
+    @IBAction func logOut(sender: AnyObject)
+    {
+        PFUser.logOutInBackgroundWithBlock { (error:NSError?) -> Void in
+            
+            if error == nil
+            {
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("userName")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                
+                let signIn = self.storyboard?.instantiateViewControllerWithIdentifier("signInVC") as! SignInVC
+                let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.window?.rootViewController = signIn
+                
+            }
+            
+        }
+    }
     
     
 

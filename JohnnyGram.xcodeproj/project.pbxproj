@@ -12,6 +12,7 @@
 		B21D83FE1C857B750042376F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D83FD1C857B750042376F /* HeaderView.swift */; };
 		B21D84001C857ED60042376F /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D83FF1C857ED60042376F /* PictureCell.swift */; };
 		B226F65A1C95B4EE008F38B3 /* GuestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B226F6591C95B4EE008F38B3 /* GuestVC.swift */; };
+		B2946E551CA4241C001684F4 /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2946E541CA4241C001684F4 /* EditVC.swift */; };
 		B2983B281C86C97200C5DD40 /* FollowersTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2983B271C86C97200C5DD40 /* FollowersTVC.swift */; };
 		B2983B2A1C86C99500C5DD40 /* FollowersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2983B291C86C99500C5DD40 /* FollowersCell.swift */; };
 		B298FDD21C854B2C00D61D38 /* KaushanScript-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B298FDD11C854B2C00D61D38 /* KaushanScript-Regular.otf */; };
@@ -30,6 +31,7 @@
 		B21D83FD1C857B750042376F /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		B21D83FF1C857ED60042376F /* PictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureCell.swift; sourceTree = "<group>"; };
 		B226F6591C95B4EE008F38B3 /* GuestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestVC.swift; sourceTree = "<group>"; };
+		B2946E541CA4241C001684F4 /* EditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditVC.swift; sourceTree = "<group>"; };
 		B2983B271C86C97200C5DD40 /* FollowersTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersTVC.swift; sourceTree = "<group>"; };
 		B2983B291C86C99500C5DD40 /* FollowersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersCell.swift; sourceTree = "<group>"; };
 		B298FDD11C854B2C00D61D38 /* KaushanScript-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KaushanScript-Regular.otf"; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				B2983B271C86C97200C5DD40 /* FollowersTVC.swift */,
 				B2983B291C86C99500C5DD40 /* FollowersCell.swift */,
 				B226F6591C95B4EE008F38B3 /* GuestVC.swift */,
+				B2946E541CA4241C001684F4 /* EditVC.swift */,
 				B2D85F8D1C7B530F00108483 /* Main.storyboard */,
 				B2D85F901C7B530F00108483 /* Assets.xcassets */,
 				B2D85F921C7B530F00108483 /* LaunchScreen.storyboard */,
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2946E551CA4241C001684F4 /* EditVC.swift in Sources */,
 				B2D85F9C1C7B5C9D00108483 /* SignInVC.swift in Sources */,
 				B21D83FE1C857B750042376F /* HeaderView.swift in Sources */,
 				B21D83FC1C857B370042376F /* HomeVC.swift in Sources */,

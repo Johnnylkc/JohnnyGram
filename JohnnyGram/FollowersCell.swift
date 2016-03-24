@@ -21,12 +21,16 @@ class FollowersCell: UITableViewCell {
     {
         super.awakeFromNib()
 
+        let width = UIScreen.mainScreen().bounds.width
+        
+        avaImage.frame = CGRectMake(10, 10, width/5.3, width/5.3)
         avaImage.layer.cornerRadius = avaImage.frame.size.width / 2
         avaImage.clipsToBounds = true
         
-    
-    
-    
+        userNameLabel.frame = CGRectMake(avaImage.frame.size.width + 20, 25, width/3.2, 30)
+        followButton.frame = CGRectMake(width - width/3.5, 30, width/3.5, 30)
+        
+        
     }
     
     
