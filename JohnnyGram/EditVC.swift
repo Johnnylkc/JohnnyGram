@@ -31,7 +31,7 @@ class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+ 
         ////create pickerView
         genderPicker = UIPickerView()
         genderPicker.delegate = self
@@ -40,10 +40,13 @@ class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
         genderPicker.showsSelectionIndicator = true
         genderTextField.inputView = genderPicker
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditVC.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditVC.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
+        let hideTap = UITapGestureRecognizer(target: self, action: #selector(EditVC.hideKeyboard))
+        hideTap.numberOfTapsRequired = 1
+        self.view.addGestureRecognizer(hideTap)
         
         alignment()
 
@@ -80,6 +83,22 @@ class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
         
         
     }
+    
+    func hideKeyboard()
+    {
+        self.view.endEditing(true)
+    }
+    
+    func keyboardWillShow(sender:NSNotification)
+    {
+        print("鍵盤出現了")
+    }
+    
+    func keyboardWillHide(sender:UIGestureRecognizer)
+    {
+        print("鍵盤消失")
+    }
+    
     
     @IBAction func save_click(sender: AnyObject)
     {
