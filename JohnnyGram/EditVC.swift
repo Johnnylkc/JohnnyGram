@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
+class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var avaImage: UIImageView!
@@ -32,21 +32,12 @@ class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
     {
         super.viewDidLoad()
  
-        ////create pickerView
-        genderPicker = UIPickerView()
-        genderPicker.delegate = self
-        genderPicker.dataSource = self
-        genderPicker.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        genderPicker.showsSelectionIndicator = true
-        genderTextField.inputView = genderPicker
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditVC.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditVC.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
-        let hideTap = UITapGestureRecognizer(target: self, action: #selector(EditVC.hideKeyboard))
-        hideTap.numberOfTapsRequired = 1
-        self.view.addGestureRecognizer(hideTap)
+        
         
         alignment()
 
@@ -81,17 +72,52 @@ class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
         titleLabel.frame = CGRectMake(15, emailTextField.frame.origin.y - 30, width-20, 30)
         
         
+        ////create pickerView
+        genderPicker = UIPickerView()
+        genderPicker.delegate = self
+        genderPicker.dataSource = self
+        genderPicker.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        genderPicker.showsSelectionIndicator = true
+        genderTextField.inputView = genderPicker
+
+        
+        let avaTap = UITapGestureRecognizer(target: self, action: #selector(EditVC.loadImage(_:)))
+        avaTap.numberOfTapsRequired = 1
+        avaImage.userInteractionEnabled = true
+        avaImage.addGestureRecognizer(avaTap)
+        
+        let hideTap = UITapGestureRecognizer(target: self, action: #selector(EditVC.hideKeyboard))
+        hideTap.numberOfTapsRequired = 1
+        self.view.addGestureRecognizer(hideTap)
         
     }
     
+    ////按了大頭照 開啟相機膠卷
+    func loadImage(recognize:UITapGestureRecognizer)
+    {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .PhotoLibrary
+        picker.allowsEditing = true
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    ////選了照片之後 當大頭貼
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
+    {
+        avaImage.image = info[UIImagePickerControllerEditedImage] as? UIImage
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    ////整個view的Tap
     func hideKeyboard()
     {
         self.view.endEditing(true)
     }
     
+    ////如果開始輸入文字 scrollView的contenSize = view的高 ＋ 鍵盤高度的一半 再多一點點
     func keyboardWillShow(sender:NSNotification)
     {
-        print("鍵盤出現了")
         keyboard = (sender.userInfo?[UIKeyboardFrameEndUserInfoKey]!.CGRectValue)!
         
         UIView.animateWithDuration(0.4) { 
@@ -102,10 +128,10 @@ class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
         
     }
     
+    ////如果結束編輯 鍵盤收走後 scrollView的contentSize 讓他等於零 就是不能滾動了
     func keyboardWillHide(sender:UIGestureRecognizer)
     {
-        print("鍵盤消失")
-        UIView.animateWithDuration(0.4) { 
+        UIView.animateWithDuration(0.4) {
             
             self.scrollView.contentSize.height = 0
             
