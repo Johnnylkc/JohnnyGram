@@ -31,17 +31,17 @@ class GuestVC: UICollectionViewController {
         
         ////將原本的返回紐隱藏 做個新的
         self.navigationItem.hidesBackButton = true
-        let backButton = UIBarButtonItem(title: "back", style: .Plain, target: self, action: "back:")
+        let backButton = UIBarButtonItem(title: "back", style: .Plain, target: self, action: #selector(GuestVC.back(_:)))
         self.navigationItem.leftBarButtonItem = backButton
         
         ////向右滑 回前頁
-        let backSwipe = UISwipeGestureRecognizer(target: self, action: "back:")
+        let backSwipe = UISwipeGestureRecognizer(target: self, action: #selector(GuestVC.back(_:)))
         backSwipe.direction = .Right
         self.view.addGestureRecognizer(backSwipe)
         
         ////refresher 下拉更新
         refresher = UIRefreshControl()
-        refresher.addTarget(self, action: "refresh", forControlEvents:.ValueChanged)
+        refresher.addTarget(self, action: #selector(GuestVC.refresh), forControlEvents:.ValueChanged)
         collectionView?.addSubview(refresher)
         
         loadPosts()
@@ -245,19 +245,19 @@ class GuestVC: UICollectionViewController {
         
         
         ////點了這個user的po文數這個UILabel 就...
-        let postsTap = UITapGestureRecognizer(target: self, action: "postsTap")
+        let postsTap = UITapGestureRecognizer(target: self, action: #selector(GuestVC.postsTap))
         postsTap.numberOfTapsRequired = 1
         header.postsNumberLabel.userInteractionEnabled = true
         header.postsNumberLabel.addGestureRecognizer(postsTap)
         
         ////點了這個user的follower數字label 就...
-        let followersTap = UITapGestureRecognizer(target: self, action: "followersTap")
+        let followersTap = UITapGestureRecognizer(target: self, action: #selector(GuestVC.followersTap))
         followersTap.numberOfTapsRequired = 1
         header.followersNumberLabel.userInteractionEnabled = true
         header.followersNumberLabel.addGestureRecognizer(followersTap)
         
         ////點了這個user的following數字label 就...
-        let followingsTap = UITapGestureRecognizer(target: self, action: "followingsTap")
+        let followingsTap = UITapGestureRecognizer(target: self, action: #selector(GuestVC.followingsTap))
         followersTap.numberOfTapsRequired = 1
         header.followingsNumberLabel.userInteractionEnabled = true
         header.followingsNumberLabel.addGestureRecognizer(followingsTap)

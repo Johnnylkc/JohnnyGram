@@ -39,9 +39,9 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
         super.viewDidLoad()
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showKeyboard:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpVC.showKeyboard(_:)), name: UIKeyboardWillShowNotification, object: nil)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideKeyboard:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpVC.hideKeyboard(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         
         allUI()
@@ -60,13 +60,13 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
         
         
         ////加在scrollView 碰一下可以收鍵盤
-        let hideTap = UITapGestureRecognizer(target: self, action: "hideKeyboardTap:")
+        let hideTap = UITapGestureRecognizer(target: self, action: #selector(SignUpVC.hideKeyboardTap(_:)))
         hideTap.numberOfTapsRequired = 1
         self.view.userInteractionEnabled = true
         self.view.addGestureRecognizer(hideTap)
         
         ////在那個大頭貼上加UITapGestureRecognizer 而不是加按鈕 按了之後開啟相機膠卷
-        let avaTap = UITapGestureRecognizer(target: self, action: "loadImage:")
+        let avaTap = UITapGestureRecognizer(target: self, action: #selector(SignUpVC.loadImage(_:)))
         avaTap.numberOfTapsRequired = 1
         self.avaImage.userInteractionEnabled = true
         avaImage.addGestureRecognizer(avaTap)
@@ -132,7 +132,6 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
     func hideKeyboardTap(recoginizer:UITapGestureRecognizer)
     {
         self.view.endEditing(true)
-        
     }
     
     
@@ -140,7 +139,6 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
     ////執行兩個在viewDidLoad的 notification
     func showKeyboard(notification:NSNotification)
     {
-        
         keyBoard = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey]!.CGRectValue)!
         UIView.animateWithDuration(0.4) { () -> Void in
             self.scrollView.frame.size.height = self.scrollViewHeight - self.keyBoard.height

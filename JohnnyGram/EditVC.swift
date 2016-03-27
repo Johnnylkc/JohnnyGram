@@ -92,11 +92,25 @@ class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
     func keyboardWillShow(sender:NSNotification)
     {
         print("鍵盤出現了")
+        keyboard = (sender.userInfo?[UIKeyboardFrameEndUserInfoKey]!.CGRectValue)!
+        
+        UIView.animateWithDuration(0.4) { 
+            
+            self.scrollView.contentSize.height = self.view.frame.size.height + self.keyboard.height / 2 + 5
+            
+        }
+        
     }
     
     func keyboardWillHide(sender:UIGestureRecognizer)
     {
         print("鍵盤消失")
+        UIView.animateWithDuration(0.4) { 
+            
+            self.scrollView.contentSize.height = 0
+            
+        }
+        
     }
     
     

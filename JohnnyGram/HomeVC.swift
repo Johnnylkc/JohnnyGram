@@ -31,7 +31,7 @@ class HomeVC: UICollectionViewController {
         
         ////下拉更新 使用UIRefreshControl
         refresher = UIRefreshControl()
-        refresher.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        refresher.addTarget(self, action: #selector(HomeVC.refresh), forControlEvents: .ValueChanged)
         collectionView?.addSubview(refresher)
         
         loadPosts()
@@ -183,19 +183,19 @@ class HomeVC: UICollectionViewController {
         
         ////在po文 追蹤者 追蹤中 三個數字 各加上UITapGestureRecognizer
         ////po文Label
-        let postsTap = UITapGestureRecognizer(target: self, action: "postsTap")
+        let postsTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.postsTap))
         postsTap.numberOfTapsRequired = 1
         header.postsNumberLabel.userInteractionEnabled = true
         header.postsNumberLabel.addGestureRecognizer(postsTap)
         
         ////追蹤者Label
-        let followersTap = UITapGestureRecognizer(target: self, action: "followersTap")
+        let followersTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.followersTap))
         followersTap.numberOfTapsRequired = 1
         header.followersNumberLabel.userInteractionEnabled = true
         header.followersNumberLabel.addGestureRecognizer(followersTap)
         
         ////追蹤中Label
-        let followingTap = UITapGestureRecognizer(target: self, action: "followingTap")
+        let followingTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.followingTap))
         followingTap.numberOfTapsRequired = 1
         header.followingsNumberLabel.userInteractionEnabled = true
         header.followingsNumberLabel.addGestureRecognizer(followingTap)

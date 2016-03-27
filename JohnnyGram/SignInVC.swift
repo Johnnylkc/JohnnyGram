@@ -45,7 +45,7 @@ class SignInVC: UIViewController {
         signUpButton.frame = CGRectMake(self.view.frame.size.width - self.view.frame.size.width/4 - 20, signInButton.frame.origin.y, self.view.frame.size.width/4, 30)
         
         ////加在整個view上的gest 碰了可以收鍵盤
-        let tap = UITapGestureRecognizer(target: self, action: "hideKeyboard:")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SignInVC.hideKeyboard(_:)))
         tap.numberOfTapsRequired = 1
         self.view.userInteractionEnabled = true
         self.view.addGestureRecognizer(tap)
