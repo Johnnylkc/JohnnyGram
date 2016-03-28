@@ -34,6 +34,11 @@ class HomeVC: UICollectionViewController {
         refresher.addTarget(self, action: #selector(HomeVC.refresh), forControlEvents: .ValueChanged)
         collectionView?.addSubview(refresher)
         
+        ////接收來自EditVC的 noti
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeVC.reload(_:)),name:"reload", object: nil)
+        
+        
+        
         loadPosts()
        
     }
@@ -43,6 +48,12 @@ class HomeVC: UICollectionViewController {
     {
         collectionView?.reloadData()
         refresher.endRefreshing()
+    }
+    
+    ////執行在viewDidLoad 接收到來自EditVC的noti
+    func reload(notification:NSNotification)
+    {
+        collectionView?.reloadData()
     }
     
     ////下載資料 在viewDidLoad執行

@@ -163,7 +163,7 @@ class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UINav
     ////檢查 email
     func validateEmail(email:String) -> Bool
     {
-        let regex = "[A-Z0-9a-z._%+-]{4}+@[A-Za-z0-9.-]{2}+\\.[A-Za-z]{2}"
+        let regex = "[A-Z0-9a-z._%+-]{4}+@[A-Za-z0-9.-]+\\.[A-Za-z]{2}"
         let range = email.rangeOfString(regex,options: .RegularExpressionSearch)
         let result = range != nil ? true:false
         
@@ -223,6 +223,29 @@ class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UINav
         {
             user["gender"] = genderTextField.text
         }
+        
+        let avaData = UIImageJPEGRepresentation(avaImage.image!, 0.5)
+        let avaFile  = PFFile(name: "ava.jpg", data: avaData!)
+        user["ava"] = avaFile
+        
+        user.saveInBackgroundWithBlock { (success:Bool, error:NSError?) in
+            
+            if success
+            {
+                self.view.endEditing(true)
+                self.dismissViewControllerAnimated(true, completion: nil)
+                
+                ////這個noti 是要填寫完新的個人資料 更新到HomeVC header
+                NSNotificationCenter.defaultCenter().postNotificationName("reload",object:nil)
+                
+            }
+            else
+            {
+                print("大頭照出了點問題\(error)")
+            }
+            
+        }
+        
     }
     
     @IBAction func cancel_click(sender: AnyObject)
