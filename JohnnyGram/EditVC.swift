@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+
 
 class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
 
@@ -37,10 +39,9 @@ class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UINav
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditVC.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
-        
-        
         alignment()
 
+        information()
     }
     
     func alignment()
@@ -86,14 +87,34 @@ class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UINav
         avaImage.userInteractionEnabled = true
         avaImage.addGestureRecognizer(avaTap)
         
-        let hideTap = UITapGestureRecognizer(target: self, action: #selector(EditVC.hideKeyboard))
+        let hideTap = UITapGestureRecognizer(target: self, action: #selector(EditVC.hideKeyboard(_:)))
         hideTap.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(hideTap)
         
     }
     
+    func information()
+    {
+        let ava = PFUser.currentUser()?.objectForKey("ava") as! PFFile
+        ava.getDataInBackgroundWithBlock { (data:NSData?, error:NSError?) in
+            
+            self.avaImage.image = UIImage(data: data!)
+            
+        }
+        
+        userNameTextField.text = PFUser.currentUser()?.username
+        fullNameTextfield.text = PFUser.currentUser()?.objectForKey("fullName") as? String
+        bioTextView.text = PFUser.currentUser()?.objectForKey("bio") as? String
+        webTextField.text = PFUser.currentUser()?.objectForKey("web") as? String
+        emailTextField.text = PFUser.currentUser()?.email
+        telTextField.text = PFUser.currentUser()?.objectForKey("phoneNumber") as? String
+        genderTextField.text = PFUser.currentUser()?.objectForKey("gender") as? String
+        
+    }
+    
+    
     ////按了大頭照 開啟相機膠卷
-    func loadImage(recognize:UITapGestureRecognizer)
+    func loadImage(sender:UITapGestureRecognizer)
     {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -110,7 +131,7 @@ class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UINav
     }
     
     ////整個view的Tap
-    func hideKeyboard()
+    func hideKeyboard(sender:UITapGestureRecognizer)
     {
         self.view.endEditing(true)
     }
@@ -139,11 +160,69 @@ class EditVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UINav
         
     }
     
+    ////檢查 email
+    func validateEmail(email:String) -> Bool
+    {
+        let regex = "[A-Z0-9a-z._%+-]{4}+@[A-Za-z0-9.-]{2}+\\.[A-Za-z]{2}"
+        let range = email.rangeOfString(regex,options: .RegularExpressionSearch)
+        let result = range != nil ? true:false
+        
+        return result
+    }
+    
+    func validateWeb(web:String) -> Bool
+    {
+        let regex = "www.+[A-Z0-9a-z._%+-]+.[A-Za-z]{2}"
+        let range = web.rangeOfString(regex,options: .RegularExpressionSearch)
+        let result = range != nil ? true:false
+        return result
+    }
+    
+    ////alertView
+    func alert(error:String,message:String)
+    {
+        let alert = UIAlertController(title: "貼心提醒", message: message, preferredStyle: .Alert)
+        let ok = UIAlertAction(title: "我知道了", style: .Cancel, handler: nil)
+        alert.addAction(ok)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     
     @IBAction func save_click(sender: AnyObject)
     {
+        if !validateEmail(emailTextField.text!)
+        {
+            alert("無效的電子信箱", message: "請再確認一下您的電子信箱喔")
+        }
+
+        if  !validateWeb(webTextField.text!)
+        {
+            alert("無效的網址", message: "請再確認一下您的網站喔")
+        }
         
+        let user = PFUser.currentUser()!
+        user.username = userNameTextField.text?.lowercaseString
+        user.email = emailTextField.text?.lowercaseString
+        user["fullName"] = fullNameTextfield.text?.lowercaseString
+        user["bio"] = bioTextView.text.lowercaseString
         
+        if telTextField.text!.isEmpty
+        {
+            user["phoneNimber"] = ""
+        }
+        else
+        {
+            user["phoneNimber"] = telTextField.text
+        }
+        
+        if  genderTextField.text!.isEmpty
+        {
+            user["gender"] = ""
+        }
+        else
+        {
+            user["gender"] = genderTextField.text
+        }
     }
     
     @IBAction func cancel_click(sender: AnyObject)

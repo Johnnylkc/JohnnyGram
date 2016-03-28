@@ -157,6 +157,8 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
     
     @IBAction func signUp(sender: AnyObject)
     {
+        self.view.endEditing(true)
+        
         ////如果有一個textfield沒填寫 就跳出個alert
         if(userNameTextField.text!.isEmpty || passwordTextField.text!.isEmpty || repeatPassordTextField.text!.isEmpty || fullNameTextField.text!.isEmpty || bioTextField.text!.isEmpty || webTextField.text!.isEmpty || emailTextField.text!.isEmpty)
         {
@@ -164,7 +166,10 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
             let ok = UIAlertAction(title: "我知道了", style: .Cancel, handler: nil)
             alert.addAction(ok)
             self.presentViewController(alert, animated: true, completion: nil)
-            }
+            
+            return
+        
+        }
         
         ////如果密碼和密碼確認不一樣 跳出alert
         if(passwordTextField.text != repeatPassordTextField.text)
@@ -173,6 +178,8 @@ class SignUpVC: UIViewController ,UIImagePickerControllerDelegate , UINavigation
             let ok = UIAlertAction(title: "我知道了", style: .Cancel, handler: nil)
             alert.addAction(ok)
             self.presentViewController(alert, animated: true, completion: nil)
+            
+            return
         }
         
         let user = PFUser()
